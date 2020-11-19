@@ -1,3 +1,7 @@
+
+
+
+
 public struct ThoughtParser {
     var text = "Hello, World!"
     
