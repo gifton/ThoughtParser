@@ -5,7 +5,7 @@ import NaturalLanguage
 // user types in thought title and hits continue
 // findKeywords(:String) -> [Keywords]
 // once there are more than 25 thoughts, we can use a RAKE style algorithm to cross reference those keywords found and give even more acurate reccomendations
-class KeywordGenerator {
+public class KeywordGenerator {
 
     public static func rawKeywords(forString text: String, completion: ([(String, Float)]) -> ()) {
         completion(TRKeyword(text: text).execute())

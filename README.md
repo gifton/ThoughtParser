@@ -1,3 +1,4 @@
 # ThoughtParser
 
-A description of this package.
+
+Thought Parser allows for the identification of keywords in a Thought

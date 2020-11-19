@@ -3,7 +3,7 @@
 import Foundation
 
 // TextRank Keywords
-internal final class TRKeyword {
+public final class TRKeyword {
 
     private let ngram: Int = 3
     private var words: [String]

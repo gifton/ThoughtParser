@@ -1,7 +1,7 @@
 
 import Foundation
 
-internal struct Search {
+public struct Search {
 
     static func binary<T: Comparable>(_ array: [T], target: T) -> Bool {
         var left = 0

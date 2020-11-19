@@ -1,7 +1,7 @@
 
 import Foundation
 
-internal final class Summarizer {
+public final class Summarizer {
 
     private let phrases: [Sentence]
     private let rank = TextRank<Sentence>()

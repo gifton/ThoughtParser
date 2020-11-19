@@ -1,7 +1,7 @@
 
 import Foundation
 
-internal final class TextRank<T: Hashable> {
+public final class TextRank<T: Hashable> {
 
     typealias Node      = [T: Float]
     typealias Edge      = [T: Float]

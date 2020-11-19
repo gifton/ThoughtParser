@@ -1,7 +1,7 @@
 
 import Foundation
 
-internal struct Sentence {
+public struct Sentence {
 
     let text: String
     let words: [String]

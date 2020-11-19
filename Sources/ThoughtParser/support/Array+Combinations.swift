@@ -2,7 +2,7 @@
 
 import Foundation
 
-internal extension Array {
+public extension Array {
 
     var count: Float {
         return Float(self.count as Int)

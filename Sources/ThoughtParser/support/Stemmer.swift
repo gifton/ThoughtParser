@@ -1,7 +1,7 @@
 
 import Foundation
 
-internal struct Stemmer {
+public struct Stemmer {
 
     typealias Language = String
     typealias Script = String
