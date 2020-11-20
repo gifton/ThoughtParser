@@ -4,7 +4,7 @@ import NaturalLanguage
 
 // Thought Configurator needs information on thought to run calculations
 // for seperation of concerns the viewmodel that instantiates the ThoughtConfigurator will handle all connection to core data
-public rotocol ThoughtConfiguratorDelegate: class {
+public protocol ThoughtConfiguratorDelegate: class {
     func createNewKeyword(fromTitle title: String) -> Keyword?
     func addExistingKeyword(_ keyword: Keyword)
     var content: String { get }

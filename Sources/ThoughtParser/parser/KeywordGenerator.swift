@@ -17,7 +17,7 @@ extension KeywordGenerator {
     
     
     private func setKeyword(fromTitle title: String) -> Keyword {
-        let keyword = Keyword()
+        let keyword = Keyword(title: title)
         keyword.title = title
         keyword.createdAt = Date()
         keyword.emoji = KeywordGenerator.reccomendEmoji(forKeyword: title)
