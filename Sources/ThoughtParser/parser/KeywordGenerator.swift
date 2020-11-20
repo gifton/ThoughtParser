@@ -16,8 +16,8 @@ public class KeywordGenerator {
 extension KeywordGenerator {
     
     
-    private func setKeyword(fromTitle title: String) -> Keyword {
-        let keyword = Keyword(title: title)
+    private func setKeyword(fromTitle title: String) -> ConfigurableKeyword {
+        let keyword = ConfigurableKeyword(title: title)
         keyword.title = title
         keyword.createdAt = Date()
         keyword.emoji = KeywordGenerator.reccomendEmoji(forKeyword: title)

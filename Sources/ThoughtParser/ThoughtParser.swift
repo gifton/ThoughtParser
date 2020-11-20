@@ -11,3 +11,10 @@ public struct ThoughtParser {
         print("This is great!")
     }
 }
+
+
+public class Tester {
+    func findThoughts() -> [ConfigurableThought] {
+        return []
+    }
+}

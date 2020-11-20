@@ -31,7 +31,7 @@ import CoreData
 
 
 public class ConfigurableThought {
-    internal init(content: String, keywords: [Keyword]? = nil) {
+    internal init(content: String, keywords: [ConfigurableKeyword]? = nil) {
         self.content = content
         self.createdAt = Date()
         self.lastUpdated = Date()
@@ -47,7 +47,7 @@ public class ConfigurableThought {
     public var id: String
 
     // MARK: relationship
-    public var keywords: [Keyword]?
+    public var keywords: [ConfigurableKeyword]?
     
 }
 let ThoughtTypeTitle = "Thought"

@@ -5,8 +5,8 @@ import NaturalLanguage
 // Thought Configurator needs information on thought to run calculations
 // for seperation of concerns the viewmodel that instantiates the ThoughtConfigurator will handle all connection to core data
 public protocol ThoughtConfiguratorDelegate: class {
-    func createNewKeyword(fromTitle title: String) -> Keyword?
-    func addExistingKeyword(_ keyword: Keyword)
+    func createNewKeyword(fromTitle title: String) -> ConfigurableKeyword?
+    func addExistingKeyword(_ keyword: ConfigurableKeyword)
     var content: String { get }
 }
 
@@ -18,14 +18,14 @@ public final class ThoughtConfigurator: NSObject {
     /// mark: Private variables
     private var rawPortions: [String]?
     
-    private var computedKeywords: [Keyword]?
+    private var computedKeywords: [ConfigurableKeyword]?
     
     /// Embedding for NLP word similarity
     let embedding = NLEmbedding.wordEmbedding(for: .english)
     
     // MARK: Singleton variables
     public static var shared = ThoughtConfigurator()
-    private var existingKeywords: [Keyword]?
+    private var existingKeywords: [ConfigurableKeyword]?
     
     // MARK: Generator objects
     private weak var keywordGenerator: KeywordGenerator?
@@ -40,17 +40,17 @@ public final class ThoughtConfigurator: NSObject {
 // MARK: Singleton methods
 extension ThoughtConfigurator {
     // call configure on shared to set content, existing topcs and keywords will be set all up in durr there
-    func configure(addKeywords keywords: [Keyword]) {
+    func configure(addKeywords keywords: [ConfigurableKeyword]) {
         existingKeywords = keywords
     }
     
     // on the creation of a new keyword, update the shared storage so its up to date
-    func addNew(_ keyword: Keyword) {
+    func addNew(_ keyword: ConfigurableKeyword) {
         guard let _ = existingKeywords else { existingKeywords = [keyword]; return }
         existingKeywords?.append(keyword)
     }
     
-    func update(keywordWithID id: String, toKeyword keyword: Keyword) {
+    func update(keywordWithID id: String, toKeyword keyword: ConfigurableKeyword) {
         guard let kws = existingKeywords else { return }
         let index = kws.firstIndex { (k) -> Bool in
             return k.id == id
@@ -80,7 +80,7 @@ extension ThoughtConfigurator {
     }
 
     
-    public func generate(completion: ([Keyword]) -> ()) {
+    public func generate(completion: ([ConfigurableKeyword]) -> ()) {
         // parse text & include corpus 
         // extract topics from rawPortions -> ThoughtPortions
         // extract keywords from ThoughtPortions
@@ -155,7 +155,7 @@ extension ThoughtConfigurator {
         
     }
     
-    private func checkForSimilar(_ keyword: String, inCorpus corpus: [Keyword]) -> Keyword? {
+    private func checkForSimilar(_ keyword: String, inCorpus corpus: [ConfigurableKeyword]) -> ConfigurableKeyword? {
         
         // find nearest 5 words
         guard let embedding = embedding else { return nil }
@@ -163,7 +163,7 @@ extension ThoughtConfigurator {
         
         // find all strongly related words
         wordDict = wordDict.filter { return $0.1 > 0.9 }
-        var relatedKeywords = [(Keyword, NLDistance)]()
+        var relatedKeywords = [(ConfigurableKeyword, NLDistance)]()
         for word in wordDict {
             if let kw = corpus.first(where: { return $0.title == word.0 }) {
                 relatedKeywords.append((kw, word.1))

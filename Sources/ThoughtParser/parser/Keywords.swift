@@ -13,7 +13,7 @@ func randomString(length: Int) -> String {
   return String((0..<length).map{ _ in letters.randomElement()! })
 }
 
-public class Keyword {
+public class ConfigurableKeyword {
     
     internal init(emoji: String = "☁️", title: String, thoughts: [ConfigurableThought]? = nil) {
         self.emoji = emoji
@@ -32,12 +32,12 @@ public class Keyword {
 
 }
 
-extension Array where Element == Keyword {
+extension Array where Element == ConfigurableKeyword {
     
     func titles() -> [String] {
         return map { return $0.title }
     }
 }
 
-public typealias Keywords = [Keyword]
+public typealias Keywords = [ConfigurableKeyword]
 let KeywordTypeTitle = "Keyword"
