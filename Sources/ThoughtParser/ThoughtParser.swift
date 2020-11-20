@@ -15,6 +15,7 @@ public struct ThoughtParser {
 
 public class Tester {
     func findThoughts() -> [ConfigurableThought] {
+        print("successfully called tester")
         return []
     }
 }
