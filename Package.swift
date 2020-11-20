@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    
+     
     name: "ThoughtParser",
     platforms: [
         .iOS(.v13)
